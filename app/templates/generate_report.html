@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Forensic Tool - Generate Report</title>
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Display the logo at the top -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mobile Forensic Tool Logo" class="logo">
+        </div>
+        <h1>Generate Report</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.extract_data') }}">Extract Data</a></li>
+                <li><a href="{{ url_for('main.analyze_data') }}">Analyze Data</a></li>
+                <li><a href="{{ url_for('main.generate_report') }}">Generate Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Generate a Report</h2>
+        <form action="{{ url_for('generate_report') }}" method="post">
+            <label for="report_type">Select report type:</label>
+            <select id="report_type" name="report_type" required>
+                <option value="summary">Summary Report</option>
+                <option value="detailed">Detailed Report</option>
+                <option value="custom">Custom Report</option>
+            </select>
+            <button type="submit">Generate Report</button>
+        </form>
+
+        <!-- Display the generated report -->
+        <section id="report-results">
+            <h3>Report Results</h3>
+            {% if report %}
+                <pre>{{ report }}</pre>
+            {% else %}
+                <p>No report available.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mobile Forensic Tool</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

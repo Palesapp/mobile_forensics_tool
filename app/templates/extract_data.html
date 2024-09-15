@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Forensic Tool - Extract Data</title>
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Display the logo at the top -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mobile Forensic Tool Logo" class="logo">
+        </div>
+        <h1>Extract Data</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.analyze_data') }}">Analyze Data</a></li>
+                <li><a href="{{ url_for('main.generate_report') }}">Generate Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Upload Device Data</h2>
+        <form action="{{ url_for('main.extract_data') }}" method="post" enctype="multipart/form-data">
+            <label for="device_file">Choose a file:</label>
+            <input type="file" id="device_file" name="device_file" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <!-- Display message if available -->
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mobile Forensic Tool</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

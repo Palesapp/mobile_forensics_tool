@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Data</title>
+    
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <!-- Display the logo at the top -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mobile Forensic Tool Logo" class="logo">
+        </div>
+        <h1>Analyze Extracted Data</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.extract_data') }}">Extract Data</a></li>
+                <li><a href="{{ url_for('main.generate_report') }}">Generate Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form method="post">
+            <label for="data-input">Paste Extracted Data Below:</label><br>
+            <textarea id="data-input" name="extracted_data" placeholder="Paste the extracted data here..."></textarea><br>
+            <button type="submit">Analyze Data</button>
+        </form>
+
+        {% if analysis_result %}
+            <div class="result">
+                <h2>Analysis Result</h2>
+                <pre>{{ analysis_result }}</pre>
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mobile Forensic Tool</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

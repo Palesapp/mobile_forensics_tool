@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis of Communication</title>
+    
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Display the logo at the top -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="App Logo" class="logo">
+
+        <h1>Analysis of Communication Data</h1>
+
+        <!-- Display analysis result if present -->
+        {% if result %}
+            <div class="result">
+                <h2>Analysis Result:</h2>
+                <p>{{ result }}</p>
+            </div>
+        {% else %}
+            <p>No data has been analyzed yet.</p>
+        {% endif %}
+
+        <!-- Analyze Data Button -->
+        <form method="POST">
+            <button type="submit" class="analyze-btn">Analyze Data</button>
+        </form>
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

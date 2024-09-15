@@ -1,0 +1,16 @@
+2024-09-11 08:30:51,388 - INFO - Accessed the index page.
+2024-09-11 08:51:22,384 - INFO - Accessed the index page.
+2024-09-11 08:51:46,860 - INFO - Accessed the index page.
+2024-09-11 08:52:09,851 - INFO - Accessed the index page.
+2024-09-11 08:52:15,420 - INFO - Accessed the index page.
+2024-09-11 08:58:59,985 - INFO - Accessed the index page.
+2024-09-11 08:59:50,311 - INFO - Accessed the index page.
+2024-09-11 09:07:45,835 - INFO - Accessed the index page.
+2024-09-11 09:12:35,745 - INFO - Accessed the index page.
+2024-09-11 09:13:14,343 - INFO - Accessed the data extraction page.
+2024-09-11 09:16:21,888 - INFO - Accessed the index page.
+2024-09-11 09:16:26,174 - INFO - Accessed the data extraction page.
+2024-09-11 09:17:25,701 - ERROR - An error occurred while generating the report: wkhtmltopdf reported an error:
+Exit with code 1 due to network error: ProtocolUnknownError
+
+2024-09-11 09:17:39,133 - INFO - Accessed the data analysis page.

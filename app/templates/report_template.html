@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Forensics Report</title>
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <!-- Display the logo at the top -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mobile Forensic Tool Logo" class="logo">
+        </div>
+        <h1>Mobile Forensics Report</h1>
+    </header>
+
+    <main>
+        <div class="data-section">
+            <h2>Communication Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in data %}
+                    <tr>
+                        <td>{{ record.sender }}</td>
+                        <td>{{ record.receiver }}</td>
+                        <td>{{ record.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mobile Forensic Tool</p>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
