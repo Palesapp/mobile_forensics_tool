@@ -33,16 +33,25 @@ def create_app(config_name=None):
     return app
 
 def setup_logging(app):
-    # Set logging level based on the environment
-    if app.config['DEBUG']:
-        logging.basicConfig(level=logging.DEBUG)  # Log more detailed information for debugging
-    else:
-        logging.basicConfig(level=logging.INFO)   # Less detailed logging for production
+    # Clear any existing loggers to avoid duplicate logs
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
 
-    # Example of custom logging
+    # Set logging level based on the environment
+    log_level = logging.DEBUG if app.config['DEBUG'] else logging.INFO
+
+    # Set up logging format to ensure it's consistent
+    logging.basicConfig(
+        level=log_level,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[logging.StreamHandler()]  # Log to the console (stdout)
+    )
+
+    # Log the environment mode
     logging.info(f"Starting application in {app.config['ENV']} mode")
-    
-    # Logging errors
-    logging.error("An example error log")
-    
-    # You can log other levels as needed (debug, warning, etc.)
+
+    # Additional error logging for production environments
+    if not app.config['DEBUG']:
+        # Log errors to stderr
+        logging.getLogger('werkzeug').setLevel(logging.ERROR)  # Reducing Werkzeug logging to errors only in production
+        logging.error("Logging setup complete. Errors will be logged.")
