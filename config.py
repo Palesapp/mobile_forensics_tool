@@ -1,5 +1,5 @@
 import os
-from urllib.parse import urlparse, uses_netloc
+from urllib.parse import uses_netloc
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -48,13 +48,18 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     ENV = 'production'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///forensic_tool.db'
+    
+    # Adjust the DATABASE_URL conversion for production as well
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+    if DATABASE_URL and DATABASE_URL.startswith('postgres://'):
+        DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL or f"sqlite:///{os.path.join(basedir, 'forensic_tool.db')}"
 
 
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }
