@@ -1,2 +1,2 @@
-web: gunicorn run:create_app() --timeout 120
+web: 'gunicorn run:create_app() --timeout 120'
 --workers=3
