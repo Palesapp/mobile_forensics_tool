@@ -1,6 +1,8 @@
 import logging
 import sys
 import os
+if os.name != 'nt': #indicates Windows, and 'posix' indicates Linux/Unix
+import fcntl
 
 # Add the current directory to the system path to ensure 'app' is found 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
