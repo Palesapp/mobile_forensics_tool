@@ -37,7 +37,8 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     ENV = 'development'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or f"sqlite:///{os.path.join(basedir, 'dev_forensic_tool.db')}"
+    # In development, default to SQLite if no DATABASE_URL is set
+    SQLALCHEMY_DATABASE_URI = Config.SQLALCHEMY_DATABASE_URI or f"sqlite:///{os.path.join(basedir, 'dev_forensic_tool.db')}"
 
 
 class TestingConfig(Config):
@@ -48,13 +49,8 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     ENV = 'production'
-    
-    # Adjust the DATABASE_URL conversion for production as well
-    DATABASE_URL = os.environ.get('DATABASE_URL')
-    if DATABASE_URL and DATABASE_URL.startswith('postgres://'):
-        DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
-
-    SQLALCHEMY_DATABASE_URI = DATABASE_URL or f"sqlite:///{os.path.join(basedir, 'forensic_tool.db')}"
+    # In production, ensure the DATABASE_URL is used
+    SQLALCHEMY_DATABASE_URI = Config.SQLALCHEMY_DATABASE_URI
 
 
 config = {

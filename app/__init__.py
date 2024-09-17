@@ -13,11 +13,15 @@ def create_app(config_name=None):
     if config_name is None:
         config_name = os.getenv('FLASK_ENV', 'development')  # Defaults to 'development' if FLASK_ENV is not set
     
-    print(f"FLASK_ENV: {config_name}")  # This will print the current environment in the console
+    # Print current environment to console
+    print(f"FLASK_ENV: {config_name}")
 
-    # Create and configure the app
+    # Create and configure the Flask app
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+
+    # Log the database URI for debugging purposes
+    print(f"SQLALCHEMY_DATABASE_URI: {app.config['SQLALCHEMY_DATABASE_URI']}")
 
     # Set up logging
     setup_logging(app)
@@ -26,7 +30,7 @@ def create_app(config_name=None):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Register blueprints
+    # Register blueprints (assuming you have a 'routes.py' file with a 'main' blueprint)
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
@@ -47,11 +51,5 @@ def setup_logging(app):
         handlers=[logging.StreamHandler()]  # Log to the console (stdout)
     )
 
-    # Log the environment mode
-    logging.info(f"Starting application in {app.config['ENV']} mode")
-
-    # Additional error logging for production environments
-    if not app.config['DEBUG']:
-        # Log errors to stderr
-        logging.getLogger('werkzeug').setLevel(logging.ERROR)  # Reducing Werkzeug logging to errors only in production
-        logging.error("Logging setup complete. Errors will be logged.")
+    # Log that logging has been successfully set up
+    logging.getLogger().info("Logging setup complete.")
