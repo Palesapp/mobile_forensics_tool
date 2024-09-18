@@ -1,7 +1,6 @@
 import logging
 import sys
 import os
-from app import create_app
 
 # Check if we're on a Windows system (os.name == 'nt'), and skip 'fcntl' import if true
 if os.name != 'nt':  # 'nt' indicates Windows, and 'posix' indicates Linux/Unix
