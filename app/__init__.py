@@ -10,7 +10,8 @@ from app import create_app
 # Initialize database and migration objects
 migrate = Migrate()
 
-def create_app(config_name=None):
+def
+ create_app(config_name=None):
     if config_name is None:
         config_name = os.getenv('FLASK_ENV', 'development')  # Defaults to 'development' if FLASK_ENV is not set
     
