@@ -1,4 +1,5 @@
 import os
+import psycopg2
 import logging
 from flask import Flask
 from config import config  # Ensure you're importing 'config' from config.py
