@@ -19,5 +19,5 @@ setuptools==47.1.0
 SQLAlchemy==2.0.34
 typing_extensions==4.12.2
 Werkzeug==3.0.4
-psycop[c]; sys_plartform == "linux"
-psycop[binary]; sys_plartform != "linux"
+psycop[c]; sys_platform == "linux"
+psycop[binary]; sys_platform != "linux"
