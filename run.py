@@ -15,6 +15,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 try:
     from app import create_app  # Importing the app module
 except ImportError as e:
+    app = create_app('development')
     logging.error(f"Error importing create_app from app: {e}")
     raise
 
