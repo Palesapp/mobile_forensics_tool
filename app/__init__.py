@@ -1,5 +1,4 @@
 from flask import Flask
-from .models import db #ensure db is imported here
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
