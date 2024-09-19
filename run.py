@@ -3,7 +3,7 @@ import sys
 import os
 
 # Check if we're on a Windows system (os.name == 'nt'), and skip 'fcntl' import if true
-if os.name != 'nt':  # 'nt' indicates Windows, and 'posix' indicates Linux/Unix
+if os.name != 'nt':
     try:
         import fcntl
     except ImportError:
@@ -12,10 +12,12 @@ if os.name != 'nt':  # 'nt' indicates Windows, and 'posix' indicates Linux/Unix
 # Add the current directory to the system path to ensure 'app' is found
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+# Set up logging before any imports that might log messages
+logging.basicConfig(level=logging.DEBUG)  # Set to DEBUG for more detailed output
+
 try:
     from app import create_app  # Importing the app module
 except ImportError as e:
-    app = create_app('development')
     logging.error(f"Error importing create_app from app: {e}")
     raise
 
@@ -29,10 +31,8 @@ except Exception as e:
     logging.error(f"Error during app creation: {e}")
     raise
 
-# Set up logging
-logging.basicConfig(level=logging.DEBUG)  # Set to DEBUG for more detailed output
-
 if __name__ == '__main__':
+    # Run the app
     try:
         app.run(debug=True)  # Forcing debug mode in development
     except Exception as e:
