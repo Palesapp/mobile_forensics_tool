@@ -23,9 +23,6 @@ def create_app(config_name=None):
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    # Setup logging after app is created
-    setup_logging(app)
-
     return app
 
 def setup_logging(app):
@@ -42,3 +39,6 @@ def setup_logging(app):
     )
 
     app.logger.info("Logging setup complete.")
+
+# Call setup_logging once during app initialization
+setup_logging(app)
