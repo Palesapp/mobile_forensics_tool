@@ -1,4 +1,6 @@
+from flask_migrate import Migrate
 from app import create_app
+from app.models import db #import your database models
 import logging
 import sys
 import os
@@ -15,6 +17,7 @@ config_name = os.getenv('FLASK_ENV', 'development')
 # Create the Flask application
 try:
     app = create_app(config_name)
+migrate = Migrate(app, db)
 except ImportError as e:
     logging.error(f"Error importing create_app from app: {e}")
     sys.exit(1)  # Exit if there's an import error
