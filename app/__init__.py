@@ -13,6 +13,7 @@ def create_app(config_name=None):
     # Load config
     if config_name is None:
         config_name = os.getenv('FLASK_ENV', 'development')
+    
     app.config.from_object(f'config.{config_name.capitalize()}Config')
 
     # Initialize extensions
@@ -23,6 +24,9 @@ def create_app(config_name=None):
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    # Setup logging after app is created
+    setup_logging(app)
+
     return app
 
 def setup_logging(app):
@@ -31,14 +35,10 @@ def setup_logging(app):
         logging.root.removeHandler(handler)
 
     log_level = logging.DEBUG if app.config['DEBUG'] else logging.INFO
-
     logging.basicConfig(
         level=log_level,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[logging.StreamHandler()]
     )
-
+    
     app.logger.info("Logging setup complete.")
-
-# Call setup_logging once during app initialization
-setup_logging(app)
