@@ -7,6 +7,9 @@
 
     <!-- Link to CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -14,7 +17,7 @@
             <!-- Display the logo at the top -->
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Mobile Forensic Tool Logo" class="logo">
         </div>
-        <h1>Mobile Forensic Tool</h1>
+        <h1>Welcome to the Mobile Forensic Tool</h1>
         <nav>
             <ul>
                 <li><a href="{{ url_for('main.extract_data') }}">Extract Data</a></li>
@@ -24,14 +27,32 @@
         </nav>
     </header>
     <main>
-        <h2>Welcome to the Mobile Forensic Tool</h2>
-        <p>Select an option from the menu to get started.</p>
+        <section class="intro">
+            <h2>What is the Mobile Forensic Tool?</h2>
+            <p>Our Mobile Forensic Tool is designed to simplify the process of extracting, analyzing, and reporting on mobile device data. Whether you're a forensic investigator, a security expert, or just interested in mobile data analysis, our tool offers a user-friendly interface and powerful features to help you achieve your goals.</p>
+        </section>
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature">
+                <h3>Extract Data</h3>
+                <p>Quickly and efficiently extract data from mobile devices. Our tool supports various types of data extraction, ensuring you get the information you need with minimal hassle.</p>
+            </div>
+            <div class="feature">
+                <h3>Generate Report</h3>
+                <p>Create comprehensive reports based on the data extracted. Customize your reports with detailed analysis and insights, making it easier to present findings in a professional manner.</p>
+            </div>
+            <div class="feature">
+                <h3>Analyze Data</h3>
+                <p>Perform in-depth analysis of extracted data to uncover hidden insights. Our analysis tools help you identify patterns, anomalies, and other critical information.</p>
+            </div>
+        </section>
     </main>
     <footer>
-        <p>&copy; 2024 Mobile Forensic Tool</p>
+        <p>&copy; 2024 Mobile Forensic Tool. All rights reserved.</p>
     </footer>
 
     <!-- Link to JavaScript file -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+
