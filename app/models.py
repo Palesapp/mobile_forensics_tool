@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from . import db # Import the db instance from __init__.py
 
 # Initialize the logger
 logger = logging.getLogger(__name__)

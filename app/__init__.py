@@ -5,35 +5,23 @@ from config import config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-# Initialize database and migration objects
+# Create instances of the database and migration
 db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app(config_name=None):
-    if config_name is None:
-        config_name = os.getenv('FLASK_ENV', 'development')
-
-    print(f"FLASK_ENV: {config_name}")
-
-    # Create and configure the Flask app
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+    app.config.from_object(config[config_name])  # Load the appropriate config
 
-    # Log the database URI for debugging purposes
-    app.logger.info(f"SQLALCHEMY_DATABASE_URI: {app.config['SQLALCHEMY_DATABASE_URI']}")
-
-    # Initialize extensions
+    # Initialize the database and migration with the app
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Register blueprints
-    register_blueprints(app)
-
-    return app
-
-def register_blueprints(app):
+    # Import and register blueprints here to avoid circular imports
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    return app
 
 def setup_logging(app):
     # Clear existing loggers to avoid duplicate logs

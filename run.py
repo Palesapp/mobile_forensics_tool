@@ -1,3 +1,4 @@
+from app import create_app
 import logging
 import sys
 import os
@@ -16,13 +17,14 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 logging.basicConfig(level=logging.DEBUG)  # Set to DEBUG for more detailed output
 
 try:
-    from app import create_app  # Importing the app module
+    from app import create_app  # Create the Flask application
 except ImportError as e:
     logging.error(f"Error importing create_app from app: {e}")
     raise
 
 # Use environment variable 'FLASK_ENV' if set, otherwise default to 'development'
 config_name = os.getenv('FLASK_ENV', 'development')
+app = create_app(config_name)
 
 # Create the app instance
 try:
