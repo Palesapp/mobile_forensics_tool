@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
-from app import create_app, db
+from app import create_app, db #import create_app and db
 from flask.cli import FlaskGroup
 
 # Create the Flask application

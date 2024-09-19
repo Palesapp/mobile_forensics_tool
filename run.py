@@ -1,6 +1,5 @@
 from flask_migrate import Migrate
-from app import create_app
-from app.models import db  # Import your database models
+from app import create_app, db #import create_app and db
 import logging
 import sys
 import os
